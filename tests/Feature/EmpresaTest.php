@@ -19,7 +19,7 @@ class EmpresaTest extends TestCase
             'telefono' => '555-1234',
         ];
 
-        $response = $this->postJson('/api/empresas', $data);
+        $response = $this->postJson('/api/v1/empresas', $data);
         $response->assertStatus(201)
                  ->assertJson($data + ['estado' => 'Activo']);
     }
@@ -27,7 +27,7 @@ class EmpresaTest extends TestCase
     public function test_can_get_all_empresas()
     {
         Empresa::factory()->count(3)->create();
-        $response = $this->getJson('/api/empresas');
+        $response = $this->getJson('/api/v1/empresas');
         $response->assertStatus(200)
                  ->assertJsonCount(3);
     }
@@ -35,7 +35,7 @@ class EmpresaTest extends TestCase
     public function test_can_get_empresa_by_nit()
     {
         $empresa = Empresa::factory()->create(['nit' => '123456789']);
-        $response = $this->getJson('/api/empresas/123456789');
+        $response = $this->getJson('/api/v1/empresas/123456789');
         $response->assertStatus(200)
                  ->assertJsonFragment(['nit' => '123456789']);
     }
@@ -44,7 +44,7 @@ class EmpresaTest extends TestCase
     {
         $empresa = Empresa::factory()->create(['nit' => '123456789']);
         $data = ['nombre' => 'Empresa Actualizada'];
-        $response = $this->putJson('/api/empresas/123456789', $data);
+        $response = $this->putJson('/api/v1/empresas/123456789', $data);
         $response->assertStatus(200)
                  ->assertJsonFragment($data);
     }
@@ -52,7 +52,7 @@ class EmpresaTest extends TestCase
     public function test_can_delete_inactive_empresas()
     {
         Empresa::factory()->create(['estado' => 'Inactivo']);
-        $response = $this->deleteJson('/api/empresas/inactivas');
+        $response = $this->deleteJson('/api/v1/empresas/inactivas');
         $response->assertStatus(200)
                  ->assertJsonFragment(['message' => '1 empresas inactivas eliminadas']);
     }
@@ -66,8 +66,7 @@ class EmpresaTest extends TestCase
             'direccion' => 'Calle 123',
             'telefono' => '555-1234',
         ];
-
-        $response = $this->postJson('/api/empresas', $data);
+        $response = $this->postJson('/api/v1/empresas', $data);
         $response->assertStatus(422)
                  ->assertJsonValidationErrors('nit');
     }

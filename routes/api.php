@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\EmpresaController;
 
-Route::prefix('empresas')->group(function () {
-    Route::get('/', [EmpresaController::class, 'index']); // Listar todas las empresas
-    Route::get('/{nit}', [EmpresaController::class, 'show']); // Consultar empresa por NIT
-    Route::post('/', [EmpresaController::class, 'store']); // Crear empresa
-    Route::put('/{nit}', [EmpresaController::class, 'update']); // Actualizar empresa
-    Route::delete('/inactivas', [EmpresaController::class, 'destroyInactive']); // Borrar empresas inactivas
+Route::prefix('v1/empresas')->group(function () {
+    Route::get('/', [EmpresaController::class, 'index']);
+    Route::get('/{nit}', [EmpresaController::class, 'show']);
+    Route::post('/', [EmpresaController::class, 'store']);
+    Route::put('/{nit}', [EmpresaController::class, 'update']);
+    Route::delete('/inactivas', [EmpresaController::class, 'destroyInactive']);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
