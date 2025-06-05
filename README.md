@@ -1,6 +1,6 @@
 # Empresas API
 
-Esta es una API RESTful desarrollada con Laravel para gestionar los datos de empresas, cumpliendo con los requisitos del desafío técnico propuesto. La API permite agregar, actualizarong, actualizar, consultar y eliminar empresas, con validaciones y manejo de excepciones robusto.
+Esta es una API RESTful desarrollada con Laravel para gestionar los datos de empresas, cumpliendo con los requisitos del desafío técnico propuesto. La API permite agregar, actualizar, consultar y eliminar empresas, con validaciones y manejo de excepciones.
 
 ## Descripción del Proyecto
 
